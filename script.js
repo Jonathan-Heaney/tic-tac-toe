@@ -9,6 +9,8 @@
 //   return { boardArray, squares };
 // })();
 
+let turn = 'x';
+
 const boardArray = ['', '', '', '', '', '', '', '', ''];
 const squares = document.querySelectorAll('.square');
 function displayBoard() {
@@ -19,9 +21,19 @@ function displayBoard() {
 
 squares.forEach((square) => {
   square.addEventListener('click', (e) => {
-    boardArray[`${e.target.id}`] = 'x';
+    if (boardArray[`${e.target.id}`]) return;
+    boardArray[`${e.target.id}`] = `${turn}`;
     displayBoard();
     console.log(e.target.id);
     console.log(boardArray);
+    switchTurn();
   });
 });
+
+function switchTurn() {
+  if (turn === 'x') {
+    turn = 'o';
+  } else turn = 'x';
+}
+
+function checkSquare(e) {}
