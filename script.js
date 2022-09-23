@@ -27,6 +27,7 @@ squares.forEach((square) => {
     console.log(e.target.id);
     console.log(boardArray);
     switchTurn();
+    checkWinner();
   });
 });
 
@@ -37,3 +38,13 @@ function switchTurn() {
 }
 
 function checkSquare(e) {}
+
+function checkWinner() {
+  if (
+    boardArray[0] === boardArray[1] &&
+    boardArray[2] == boardArray[1] &&
+    boardArray[0]
+  ) {
+    console.log('Winner');
+  }
+}
