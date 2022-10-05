@@ -48,6 +48,7 @@ function checkWinner() {
   checkRowWinner();
   checkColumnWinner();
   checkDiagonalWinner();
+  checkDraw();
 }
 
 function checkRowWinner() {
@@ -115,6 +116,19 @@ function checkDiagonalWinner() {
   ) {
     winner = `${boardArray[2]}`;
     showWinner();
+  }
+}
+
+function checkDraw() {
+  let filled;
+  for (let i = 0; i < boardArray.length; i++) {
+    if (boardArray[i]) {
+      filled = true;
+    } else filled = false;
+    break;
+  }
+  if (filled && !winner) {
+    turnDisplay.textContent = "It's a tie!";
   }
 }
 
