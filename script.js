@@ -119,13 +119,13 @@ function checkDiagonalWinner() {
   }
 }
 
+let filled;
 function checkDraw() {
-  let filled;
   for (let i = 0; i < boardArray.length; i++) {
-    if (boardArray[i]) {
-      filled = true;
-    } else filled = false;
-    break;
+    if (!boardArray[i]) {
+      filled = false;
+      break;
+    } else filled = true;
   }
   if (filled && !winner) {
     turnDisplay.textContent = "It's a tie!";
@@ -134,4 +134,20 @@ function checkDraw() {
 
 function showWinner() {
   turnDisplay.textContent = `Player ${winner} has won!`;
+}
+
+const restartBtn = document.querySelector('.restart');
+
+restartBtn.addEventListener('click', restartGame);
+
+function restartGame() {
+  for (let i = 0; i < boardArray.length; i++) {
+    boardArray[i] = '';
+  }
+  displayBoard();
+  filled = false;
+  winner = false;
+  turn = 'X';
+  turnDisplay.textContent = "Player X's Turn";
+  console.log('working');
 }
