@@ -46,6 +46,8 @@ let winner;
 
 function checkWinner() {
   checkRowWinner();
+  checkColumnWinner();
+  checkDiagonalWinner();
 }
 
 function checkRowWinner() {
@@ -73,9 +75,48 @@ function checkRowWinner() {
   }
 }
 
-function checkColumnWinner() {}
+function checkColumnWinner() {
+  if (
+    boardArray[0] === boardArray[3] &&
+    boardArray[0] === boardArray[6] &&
+    boardArray[0]
+  ) {
+    winner = `${boardArray[0]}`;
+    showWinner();
+  } else if (
+    boardArray[1] === boardArray[4] &&
+    boardArray[1] === boardArray[7] &&
+    boardArray[1]
+  ) {
+    winner = `${boardArray[1]}`;
+    showWinner();
+  } else if (
+    boardArray[2] === boardArray[5] &&
+    boardArray[2] === boardArray[8] &&
+    boardArray[2]
+  ) {
+    winner = `${boardArray[2]}`;
+    showWinner();
+  }
+}
 
-function checkDiagonalWinner() {}
+function checkDiagonalWinner() {
+  if (
+    boardArray[0] === boardArray[4] &&
+    boardArray[0] === boardArray[8] &&
+    boardArray[0]
+  ) {
+    winner = `${boardArray[0]}`;
+    showWinner();
+  } else if (
+    boardArray[2] === boardArray[4] &&
+    boardArray[2] === boardArray[6] &&
+    boardArray[2]
+  ) {
+    winner = `${boardArray[2]}`;
+    showWinner();
+  }
+}
 
 function showWinner() {
   turnDisplay.textContent = `Player ${winner} has won!`;
