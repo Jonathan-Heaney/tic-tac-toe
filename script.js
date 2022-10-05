@@ -22,10 +22,9 @@ function displayBoard() {
 squares.forEach((square) => {
   square.addEventListener('click', (e) => {
     if (boardArray[`${e.target.id}`]) return;
+    if (winner) return;
     boardArray[`${e.target.id}`] = `${turn}`;
     displayBoard();
-    console.log(e.target.id);
-    console.log(boardArray);
     switchTurn();
     updateTurnDisplay();
     checkWinner();
@@ -43,14 +42,41 @@ function updateTurnDisplay() {
   turnDisplay.textContent = `Player ${turn}'s Turn`;
 }
 
-function checkSquare(e) {}
+let winner;
 
 function checkWinner() {
+  checkRowWinner();
+}
+
+function checkRowWinner() {
   if (
     boardArray[0] === boardArray[1] &&
-    boardArray[2] == boardArray[1] &&
+    boardArray[0] === boardArray[2] &&
     boardArray[0]
   ) {
-    console.log('Winner');
+    winner = `${boardArray[0]}`;
+    showWinner();
+  } else if (
+    boardArray[3] === boardArray[4] &&
+    boardArray[3] === boardArray[5] &&
+    boardArray[3]
+  ) {
+    winner = `${boardArray[3]}`;
+    showWinner();
+  } else if (
+    boardArray[6] === boardArray[7] &&
+    boardArray[6] === boardArray[8] &&
+    boardArray[6]
+  ) {
+    winner = `${boardArray[6]}`;
+    showWinner();
   }
+}
+
+function checkColumnWinner() {}
+
+function checkDiagonalWinner() {}
+
+function showWinner() {
+  turnDisplay.textContent = `Player ${winner} has won!`;
 }
